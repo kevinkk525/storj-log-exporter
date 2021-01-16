@@ -66,6 +66,8 @@ Add the dashboard from the file [dashboard_log_exporter.json](./dashboard_log_ex
 
 The Error Count excludes falsely classified errors (e.g. shutdown of runner, download/upload failed due to client side errors, graceful exit errors if you GE’ed on stefan-benten).
 
+Restarts of the exporter container can cause some "strange" values on the dashboard like upload/download successrates of >100%. This is simply due to the exporter having missed a few lines of "upload/download started" while the container was restarting. There's nothing I can do about that, those line are just lost (there is an option to always read the whole file but it'll cause other problems with metrics so I can't use that option). The successrate will go back to normal after a while.
+
 Let me know if you miss a metric or if something is wrong.
 
 # Future
