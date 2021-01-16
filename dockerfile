@@ -3,6 +3,8 @@
 
 FROM golang:stretch as builder
 
+ARG TARGETARCH
+
 # Install system deps
 #   We need this in order to build oniguruma.
 #   The debian deb packages for onigurma do not install static libs
@@ -30,7 +32,7 @@ RUN cd /go/src/github.com/fstab/grok_exporter && \
 
 # Build Statically-Linked Binary
 RUN cd /go/src/github.com/fstab/grok_exporter && \
-  GOOS=linux GOARCH=amd64 CGO_ENABLED=1 go build \
+  GOOS=linux GOARCH=${TARGETARCH} CGO_ENABLED=1 go build \
     -ldflags "-w -extldflags \"-static\" \
     -X github.com/fstab/grok_exporter/exporter.Version=$VERSION \
     -X github.com/fstab/grok_exporter/exporter.BuildDate=$(date +%Y-%m-%d) \
