@@ -60,7 +60,7 @@ Add the dashboard from the file [dashboard_log_exporter.json](./dashboard_log_ex
 
 ## Result
 
-![Image](./dashboard.png)
+![Image](./dashboard.PNG)
 
 # Notes
 
