@@ -21,7 +21,7 @@ sudo docker run -d --restart unless-stopped --user "1000:1000" \
     storj-log-exporter -config /app/config.yml
 ```
 
-Change the container name to your liking, insert the path to your logfiles instead of <...>. The logfile needs to have the name "node.log".
+Change the container name to your liking, insert the path to your logfiles instead of <...>. The logfile needs to have the name "node.log" but it can not be in the path in the docker run command! E.g. you need a path like /mnt/storj/ if your logfile is /mnt/storj/node.log (because binding the logfile into the container directly will cause problems with inotify detecting changes in the file).
 If you run multiple exporter, make sure to change the port, e.g. -p 9145:9144 etc.
 The user "1000:1000" should be fine unless your logfiles can't be read by that user.
 
