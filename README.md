@@ -17,7 +17,7 @@ sudo docker build -t storj-log-exporter .
 sudo docker run -d --restart unless-stopped --user "1000:1000" \
     -p 9144:9144 \
     --mount type=bind,source="<path_to_your_logfiles>",destination=/app/logs \
-    --name storj-log-exporter
+    --name storj-log-exporter \
     storj-log-exporter -config /app/config.yml
 ```
 
