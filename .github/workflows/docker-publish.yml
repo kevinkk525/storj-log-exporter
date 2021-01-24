@@ -36,4 +36,5 @@ jobs:
           push: true
           tags: |
             ${{ github.ref == 'refs/heads/master' && 'kevinkk525/storj-log-exporter:latest' || '' }}
+            kevinkk525/storj-log-exporter:latest
           labels: ${{ steps.docker_meta.outputs.labels }}
