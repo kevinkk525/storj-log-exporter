@@ -27,6 +27,23 @@ The user "1000:1000" should be fine unless your logfiles can't be read by that u
 
 Now you can check the output at http://<node_ip>:9144/metrics
 
+## Docker Compose
+```
+  storj-log-exporter:
+    build: ./storj-log-exporter
+    container_name: storj-log-exporter
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+    ports: ['9144:9144']
+    volumes:
+      - type: 'bind'
+        source: '<path_to_your_logfiles>'
+        target: '/app/logs'
+    command: ["-config", "/app/config.yml"]
+ ```
+
 ## Configure in prometheus.yml
 
 If you followed my [How-To monitor all nodes in your lan](https://forum.storj.io/t/how-to-monitor-all-nodes-in-your-lan-using-prometheus-grafana-linux-using-docker) on the storj forum, you should already have a job in prometheus.yml looking like this:
