@@ -1,0 +1,16 @@
+---
+version: '2.3'
+
+  storj-log-exporter:
+    build: ./storj-log-exporter
+    container_name: storj-log-exporter
+    restart: unless-stopped
+    environment:
+      - PUID=1000
+      - PGID=1000
+    ports: ['9144:9144']
+    volumes:
+      - type: 'bind'
+        source: '<path_to_your_logfiles>'
+        target: '/app/logs'
+    command: ["-config", "/app/config.yml"]
