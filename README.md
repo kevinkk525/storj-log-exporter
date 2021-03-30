@@ -30,18 +30,19 @@ Now you can check the output at http://<node_ip>:9144/metrics
 ## Docker Compose
 ```
   storj-log-exporter:
-    build: ./storj-log-exporter
+    image: kevinkk525/storj-log-exporter:latest
     container_name: storj-log-exporter
     restart: unless-stopped
-    environment:
-      - PUID=1000
-      - PGID=1000
-    ports: ['9144:9144']
+    user: "1000:1000"
+    networks:
+      - default
+#    ports: 
+#      - 9144:9144
     volumes:
-      - type: 'bind'
-        source: '<path_to_your_logfiles>'
-        target: '/app/logs'
-    command: ["-config", "/app/config.yml"]
+      - type: bind
+        source: <path_to_your_logfiles>
+        target: /app/logs
+    command: -config /app/config.yml
  ```
 
 ## Configure in prometheus.yml
