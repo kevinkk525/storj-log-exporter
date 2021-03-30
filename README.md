@@ -28,6 +28,7 @@ The user "1000:1000" should be fine unless your logfiles can't be read by that u
 Now you can check the output at http://<node_ip>:9144/metrics
 
 ## Docker Compose
+Alternatively, you can add the following docker-compose example to your existing docker-compose config for your storagenode:
 ```
   storj-log-exporter:
     image: kevinkk525/storj-log-exporter:latest
