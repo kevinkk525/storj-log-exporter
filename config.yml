@@ -12,14 +12,14 @@ metrics:
 - type: counter
   name: storj_pieces_delete_successful
   help: Total number of deleted pieces
-  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecedeleter\s*deleted\s*\{\"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Piece ID\"\: \"%{DATA:PieceID}\"\}'
+  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecedeleter\s*deleted\s*\{\"Process\": \"storagenode\", \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Piece ID\"\: \"%{DATA:PieceID}\"\}'
   labels:
     satellite: '{{.SatelliteID}}'
     url: '{{if eq .SatelliteID "121RTSDpyNZVcEU84Ticf2L1ntiuUimbWgfATz21tuvgk3vzoA6"}}asia-east-1.tardigrade.io:7777{{else if eq .SatelliteID "12EayRS2V1kEsWESU9QMRseFhdxYxKicsiFmxrsLZHeLUtdps3S"}}us-central-1.tardigrade.io:7777{{else if eq .SatelliteID "12L9ZFwhzVpuEKMUNUqkaTLGzwY9G24tbiigLiXpmZWKwmcNDDs"}}europe-west-1.tardigrade.io:7777{{else if eq .SatelliteID "12rfG3sh9NCWiX3ivPjq2HtdLmbqCrvHVEzJubnzFzosMuawymB"}}europe-north-1.tardigrade.io:7777{{else if eq .SatelliteID "1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE"}}saltlake.tardigrade.io:7777{{else if eq .SatelliteID "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo"}}us2.tardigrade.io:7777{{end}}'  
 - type: counter
   name: storj_pieces_delete_failed
   help: Total number of failed deletes
-  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecedeleter\s*delete failed\s*\{\"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Piece ID\"\: \"%{DATA:PieceID}\"\}'
+  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecedeleter\s*delete failed\s*\{\"Process\": \"storagenode\", \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Piece ID\"\: \"%{DATA:PieceID}\"\}'
   labels:
     satellite: '{{.SatelliteID}}'
     url: '{{if eq .SatelliteID "121RTSDpyNZVcEU84Ticf2L1ntiuUimbWgfATz21tuvgk3vzoA6"}}asia-east-1.tardigrade.io:7777{{else if eq .SatelliteID "12EayRS2V1kEsWESU9QMRseFhdxYxKicsiFmxrsLZHeLUtdps3S"}}us-central-1.tardigrade.io:7777{{else if eq .SatelliteID "12L9ZFwhzVpuEKMUNUqkaTLGzwY9G24tbiigLiXpmZWKwmcNDDs"}}europe-west-1.tardigrade.io:7777{{else if eq .SatelliteID "12rfG3sh9NCWiX3ivPjq2HtdLmbqCrvHVEzJubnzFzosMuawymB"}}europe-north-1.tardigrade.io:7777{{else if eq .SatelliteID "1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE"}}saltlake.tardigrade.io:7777{{else if eq .SatelliteID "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo"}}us2.tardigrade.io:7777{{end}}'  
@@ -27,7 +27,7 @@ metrics:
 - type: counter
   name: storj_pieces_upload_started
   help: Total number of uploads started
-  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*upload started\s*\{\"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"\, \"Available Space\"\: %{INT:AvailableSpace}\}'
+  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*upload started\s*\{\"Process\": \"storagenode\", \"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"\, \"Available Space\"\: %{INT:AvailableSpace}\}'
   labels:
     satellite: '{{.SatelliteID}}' 
     url: '{{if eq .SatelliteID "121RTSDpyNZVcEU84Ticf2L1ntiuUimbWgfATz21tuvgk3vzoA6"}}asia-east-1.tardigrade.io:7777{{else if eq .SatelliteID "12EayRS2V1kEsWESU9QMRseFhdxYxKicsiFmxrsLZHeLUtdps3S"}}us-central-1.tardigrade.io:7777{{else if eq .SatelliteID "12L9ZFwhzVpuEKMUNUqkaTLGzwY9G24tbiigLiXpmZWKwmcNDDs"}}europe-west-1.tardigrade.io:7777{{else if eq .SatelliteID "12rfG3sh9NCWiX3ivPjq2HtdLmbqCrvHVEzJubnzFzosMuawymB"}}europe-north-1.tardigrade.io:7777{{else if eq .SatelliteID "1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE"}}saltlake.tardigrade.io:7777{{else if eq .SatelliteID "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo"}}us2.tardigrade.io:7777{{end}}'     
@@ -35,7 +35,7 @@ metrics:
 - type: counter
   name: storj_pieces_upload_successful
   help: Total number of successful uploads
-  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*uploaded\s*\{\"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"\, \"Size\"\: %{INT:Size}\}'
+  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*uploaded\s*\{\"Process\": \"storagenode\", \"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"\, \"Size\"\: %{INT:Size}\}'
   labels:
     satellite: '{{.SatelliteID}}'   
     url: '{{if eq .SatelliteID "121RTSDpyNZVcEU84Ticf2L1ntiuUimbWgfATz21tuvgk3vzoA6"}}asia-east-1.tardigrade.io:7777{{else if eq .SatelliteID "12EayRS2V1kEsWESU9QMRseFhdxYxKicsiFmxrsLZHeLUtdps3S"}}us-central-1.tardigrade.io:7777{{else if eq .SatelliteID "12L9ZFwhzVpuEKMUNUqkaTLGzwY9G24tbiigLiXpmZWKwmcNDDs"}}europe-west-1.tardigrade.io:7777{{else if eq .SatelliteID "12rfG3sh9NCWiX3ivPjq2HtdLmbqCrvHVEzJubnzFzosMuawymB"}}europe-north-1.tardigrade.io:7777{{else if eq .SatelliteID "1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE"}}saltlake.tardigrade.io:7777{{else if eq .SatelliteID "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo"}}us2.tardigrade.io:7777{{end}}'   
@@ -43,7 +43,7 @@ metrics:
 - type: counter
   name: storj_pieces_upload_canceled
   help: Total number of canceled uploads
-  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*upload canceled\s*\{\"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"\, \"Size\"\: %{INT:Size}\}'
+  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*upload canceled\s*\{\"Process\": \"storagenode\", \"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"\, \"Size\"\: %{INT:Size}\}'
   labels:
     satellite: '{{.SatelliteID}}'  
     url: '{{if eq .SatelliteID "121RTSDpyNZVcEU84Ticf2L1ntiuUimbWgfATz21tuvgk3vzoA6"}}asia-east-1.tardigrade.io:7777{{else if eq .SatelliteID "12EayRS2V1kEsWESU9QMRseFhdxYxKicsiFmxrsLZHeLUtdps3S"}}us-central-1.tardigrade.io:7777{{else if eq .SatelliteID "12L9ZFwhzVpuEKMUNUqkaTLGzwY9G24tbiigLiXpmZWKwmcNDDs"}}europe-west-1.tardigrade.io:7777{{else if eq .SatelliteID "12rfG3sh9NCWiX3ivPjq2HtdLmbqCrvHVEzJubnzFzosMuawymB"}}europe-north-1.tardigrade.io:7777{{else if eq .SatelliteID "1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE"}}saltlake.tardigrade.io:7777{{else if eq .SatelliteID "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo"}}us2.tardigrade.io:7777{{end}}'    
@@ -51,7 +51,7 @@ metrics:
 - type: counter
   name: storj_pieces_upload_rejected
   help: Total number of rejected uploads
-  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*upload rejected\s*\{\"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"(\, \"Size\"\: %{INT:Size})?\}'
+  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*upload rejected\s*\{\"Process\": \"storagenode\", \"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"(\, \"Size\"\: %{INT:Size})?\}'
   labels:
     satellite: '{{.SatelliteID}}'  
     url: '{{if eq .SatelliteID "121RTSDpyNZVcEU84Ticf2L1ntiuUimbWgfATz21tuvgk3vzoA6"}}asia-east-1.tardigrade.io:7777{{else if eq .SatelliteID "12EayRS2V1kEsWESU9QMRseFhdxYxKicsiFmxrsLZHeLUtdps3S"}}us-central-1.tardigrade.io:7777{{else if eq .SatelliteID "12L9ZFwhzVpuEKMUNUqkaTLGzwY9G24tbiigLiXpmZWKwmcNDDs"}}europe-west-1.tardigrade.io:7777{{else if eq .SatelliteID "12rfG3sh9NCWiX3ivPjq2HtdLmbqCrvHVEzJubnzFzosMuawymB"}}europe-north-1.tardigrade.io:7777{{else if eq .SatelliteID "1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE"}}saltlake.tardigrade.io:7777{{else if eq .SatelliteID "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo"}}us2.tardigrade.io:7777{{end}}'    
@@ -59,7 +59,7 @@ metrics:
 - type: counter
   name: storj_pieces_upload_failed
   help: Total number of failed  uploads
-  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*upload failed\s*\{\"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"(\,\s*"error": \"%{DATA:Error}\",\s*"errorVerbose": \"%{DATA:ErrorVerbose}\")?(\, \"Size\"\: %{INT:Size})?\}'
+  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*upload failed\s*\{\"Process\": \"storagenode\", \"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"(\,\s*"error": \"%{DATA:Error}\",\s*"errorVerbose": \"%{DATA:ErrorVerbose}\")?(\, \"Size\"\: %{INT:Size})?\}'
   labels:
     satellite: '{{.SatelliteID}}'   
     url: '{{if eq .SatelliteID "121RTSDpyNZVcEU84Ticf2L1ntiuUimbWgfATz21tuvgk3vzoA6"}}asia-east-1.tardigrade.io:7777{{else if eq .SatelliteID "12EayRS2V1kEsWESU9QMRseFhdxYxKicsiFmxrsLZHeLUtdps3S"}}us-central-1.tardigrade.io:7777{{else if eq .SatelliteID "12L9ZFwhzVpuEKMUNUqkaTLGzwY9G24tbiigLiXpmZWKwmcNDDs"}}europe-west-1.tardigrade.io:7777{{else if eq .SatelliteID "12rfG3sh9NCWiX3ivPjq2HtdLmbqCrvHVEzJubnzFzosMuawymB"}}europe-north-1.tardigrade.io:7777{{else if eq .SatelliteID "1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE"}}saltlake.tardigrade.io:7777{{else if eq .SatelliteID "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo"}}us2.tardigrade.io:7777{{end}}'   
@@ -69,7 +69,7 @@ metrics:
 - type: counter
   name: storj_pieces_download_started
   help: Total number of downloads started
-  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*download started\s*\{\"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"\}'
+  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*download started\s*\{\"Process\": \"storagenode\", \"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"\}'
   labels:
     satellite: '{{.SatelliteID}}'    
     url: '{{if eq .SatelliteID "121RTSDpyNZVcEU84Ticf2L1ntiuUimbWgfATz21tuvgk3vzoA6"}}asia-east-1.tardigrade.io:7777{{else if eq .SatelliteID "12EayRS2V1kEsWESU9QMRseFhdxYxKicsiFmxrsLZHeLUtdps3S"}}us-central-1.tardigrade.io:7777{{else if eq .SatelliteID "12L9ZFwhzVpuEKMUNUqkaTLGzwY9G24tbiigLiXpmZWKwmcNDDs"}}europe-west-1.tardigrade.io:7777{{else if eq .SatelliteID "12rfG3sh9NCWiX3ivPjq2HtdLmbqCrvHVEzJubnzFzosMuawymB"}}europe-north-1.tardigrade.io:7777{{else if eq .SatelliteID "1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE"}}saltlake.tardigrade.io:7777{{else if eq .SatelliteID "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo"}}us2.tardigrade.io:7777{{end}}'  
@@ -77,7 +77,7 @@ metrics:
 - type: counter
   name: storj_pieces_download_successful
   help: Total number of successful downloads
-  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*downloaded\s*\{\"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"\}'
+  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*downloaded\s*\{\"Process\": \"storagenode\", \"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"\}'
   labels:
     satellite: '{{.SatelliteID}}'    
     url: '{{if eq .SatelliteID "121RTSDpyNZVcEU84Ticf2L1ntiuUimbWgfATz21tuvgk3vzoA6"}}asia-east-1.tardigrade.io:7777{{else if eq .SatelliteID "12EayRS2V1kEsWESU9QMRseFhdxYxKicsiFmxrsLZHeLUtdps3S"}}us-central-1.tardigrade.io:7777{{else if eq .SatelliteID "12L9ZFwhzVpuEKMUNUqkaTLGzwY9G24tbiigLiXpmZWKwmcNDDs"}}europe-west-1.tardigrade.io:7777{{else if eq .SatelliteID "12rfG3sh9NCWiX3ivPjq2HtdLmbqCrvHVEzJubnzFzosMuawymB"}}europe-north-1.tardigrade.io:7777{{else if eq .SatelliteID "1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE"}}saltlake.tardigrade.io:7777{{else if eq .SatelliteID "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo"}}us2.tardigrade.io:7777{{end}}'  
@@ -85,7 +85,7 @@ metrics:
 - type: counter
   name: storj_pieces_download_canceled
   help: Total number of canceled downloads
-  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*download canceled\s*\{\"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"\}'
+  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL}\s*piecestore\s*download canceled\s*\{\"Process\": \"storagenode\", \"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"\}'
   labels:
     satellite: '{{.SatelliteID}}'  
     url: '{{if eq .SatelliteID "121RTSDpyNZVcEU84Ticf2L1ntiuUimbWgfATz21tuvgk3vzoA6"}}asia-east-1.tardigrade.io:7777{{else if eq .SatelliteID "12EayRS2V1kEsWESU9QMRseFhdxYxKicsiFmxrsLZHeLUtdps3S"}}us-central-1.tardigrade.io:7777{{else if eq .SatelliteID "12L9ZFwhzVpuEKMUNUqkaTLGzwY9G24tbiigLiXpmZWKwmcNDDs"}}europe-west-1.tardigrade.io:7777{{else if eq .SatelliteID "12rfG3sh9NCWiX3ivPjq2HtdLmbqCrvHVEzJubnzFzosMuawymB"}}europe-north-1.tardigrade.io:7777{{else if eq .SatelliteID "1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE"}}saltlake.tardigrade.io:7777{{else if eq .SatelliteID "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo"}}us2.tardigrade.io:7777{{end}}'  
@@ -93,7 +93,7 @@ metrics:
 - type: counter
   name: storj_pieces_download_failed
   help: Total number of failed downloads
-  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL:LOGLEVEL}\s*piecestore\s*download failed\s*\{\"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"(\,\s*"error": \"%{DATA:Error}\",\s*"errorVerbose": \"%{DATA:ErrorVerbose}\")?\}'
+  match: '%{TIMESTAMP_ISO8601:UNWANTED}\s*%{LOGLEVEL:LOGLEVEL}\s*piecestore\s*download failed\s*\{\"Process\": \"storagenode\", \"Piece ID\"\: \"%{DATA:PieceID}\"\, \"Satellite ID\"\: \"%{DATA:SatelliteID}\"\, \"Action\"\: \"%{DATA:Action}\"(\,\s*"error": \"%{DATA:Error}\",\s*"errorVerbose": \"%{DATA:ErrorVerbose}\")?\}'
   labels:
     satellite: '{{.SatelliteID}}'    
     url: '{{if eq .SatelliteID "121RTSDpyNZVcEU84Ticf2L1ntiuUimbWgfATz21tuvgk3vzoA6"}}asia-east-1.tardigrade.io:7777{{else if eq .SatelliteID "12EayRS2V1kEsWESU9QMRseFhdxYxKicsiFmxrsLZHeLUtdps3S"}}us-central-1.tardigrade.io:7777{{else if eq .SatelliteID "12L9ZFwhzVpuEKMUNUqkaTLGzwY9G24tbiigLiXpmZWKwmcNDDs"}}europe-west-1.tardigrade.io:7777{{else if eq .SatelliteID "12rfG3sh9NCWiX3ivPjq2HtdLmbqCrvHVEzJubnzFzosMuawymB"}}europe-north-1.tardigrade.io:7777{{else if eq .SatelliteID "1wFTAgs9DP5RSnCqKV1eLf6N9wtk4EAtmN5DpSxcs8EjT69tGE"}}saltlake.tardigrade.io:7777{{else if eq .SatelliteID "12tRQrMTWUWwzwGh18i7Fqs67kmdhH9t6aToeiwbo5mfS2rUmo"}}us2.tardigrade.io:7777{{end}}'  
