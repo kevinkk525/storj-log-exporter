@@ -1,7 +1,7 @@
 #############################
 # Multi-Stage Build
 
-FROM golang:stretch as builder
+FROM golang:buster as builder
 
 ARG TARGETARCH
 
